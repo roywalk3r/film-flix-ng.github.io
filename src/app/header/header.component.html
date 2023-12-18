@@ -1,0 +1,64 @@
+<header *ngIf="showHeader">
+  <div class="nav container">
+    <a routerLink="/home" class="logo"> Film<span>Flix</span> </a>
+    <!-- Search Box -->
+    <form [formGroup]="searchForm" (ngSubmit)="submitForm()">
+      <div class="search-box">
+        <input
+          type="search"
+          name="search-input"
+          formControlName="movieName"
+          #searchInput
+          class="search-input"
+          placeholder="search movie"
+        />
+        <button class="search-icon">
+          <i class="bx bx-search"></i>
+        </button>
+
+        <div class="results-container z-index container" #resultsContainer>
+          <div
+            class="result-item"
+            *ngFor="let s of searchResult"
+            [routerLink]="['/movie', s.id]"
+          >
+            <h3>{{ s.title }} ({{ s.release_date | date : "yyyy" }})</h3>
+            <div class="result-image">
+              <img
+                src="https://image.tmdb.org/t/p/original/{{ s.poster_path }}"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- User Image -->
+    <a href="#" class="user">
+      <img src="../../assets/img/user.png" alt="user-img" class="user-img" />
+    </a>
+
+    <div class="navbar">
+      <a routerLink="/home" class="nav-link nav-active">
+        <i class="bx bx-home"></i>
+        <span class="nav-link-title">Home</span>
+      </a>
+      <a href="#popular" class="nav-link">
+        <i class="bx bxs-hot"></i>
+        <span class="nav-link-title">Trending</span>
+      </a>
+      <a href="#movies" class="nav-link">
+        <i class="bx bx-compass"></i>
+        <span class="nav-link-title">Explore</span>
+      </a>
+      <a href="#movies" class="nav-link">
+        <i class="bx bx-tv"></i>
+        <span class="nav-link-title">Movies</span>
+      </a>
+      <a href="#home" class="nav-link">
+        <i class="bx bx-heart"></i>
+        <span class="nav-link-title">Favourite</span>
+      </a>
+    </div>
+  </div>
+</header>

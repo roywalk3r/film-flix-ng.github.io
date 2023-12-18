@@ -1,0 +1,169 @@
+<app-header></app-header>
+
+<section class="home container" id="home">
+  <style>
+    .home-text span {
+      padding: 0 10px;
+      border-right: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .home-text span:first-child {
+      padding-left: 0;
+    }
+
+    .home-text span:last-child {
+      border-right: none;
+    }
+
+    .home-text span i {
+      background: #de0611;
+      color: #fff;
+      padding: 0 8px;
+      display: inline-block;
+      font-style: normal;
+      border-radius: 2px;
+    }
+
+    .play-movie {
+      position: absolute !important;
+      bottom: 0.8rem !important;
+      right: 11.4rem !important;
+    }
+
+    .login {
+      background-color: transparent !important;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  </style>
+  <!-- Home Image -->
+  <img src="../../assets/img/kraven.png" alt="" class="home-img" />
+  <!-- Home Text  -->
+  <div class="home-text">
+    <h1 class="home-title">
+      Kraven The <br />
+      Hunter
+    </h1>
+    <p>Releasing 24 October</p>
+    <span>2023</span>
+    <span><i>17+</i></span>
+    <span>2h 30min</span>
+    <a href="" class="watch-btn play-btn">
+      <span>Watch The Trailer</span>
+    </a>
+  </div>
+
+  <!-- Play btn -->
+  <i class="bx bx-right-arrow play-movie" (click)="playVideo()"></i>
+  <!-- Video Container -->
+  <div class="video-container" [ngClass]="{ 'show-video': isVideoVisible }">
+    <!-- Video-Box  -->
+    <div class="video-box">
+      <video controls id="myvideo">
+        <source src="../../assets/KRAVEN THE HUNTER.mp4" type="video/mp4" />
+      </video>
+
+      <!-- Close Video Icon  -->
+      <i class="bx bx-x close-video" (click)="closeVideo()"></i>
+    </div>
+  </div>
+</section>
+
+<section class="popular container" id="popular">
+  <!-- Heading  -->
+  <div class="heading">
+    <h2 class="heading-title">Lates Movies</h2>
+    <div class="swiper-btn">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div class="popular-content swiper">
+    <div class="swiper-wrapper">
+      <ng-container *ngFor="let t of trendingMovieResult">
+        <div class="swiper-slide">
+          <div class="movie-box">
+            <img
+              src="https://image.tmdb.org/t/p/original/{{ t.poster_path }}"
+              alt="{{ t.original_title }}"
+              class="movie-box-img"
+            />
+            <div class="box-text">
+              <h2 class="movie-title">{{ t.original_title }}</h2>
+              <span class="movie-type">{{ t.release_date }}</span>
+              <a [routerLink]="['/movie', t.id]" class="watch-btn play-btn">
+                <i class="bx bx-right-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+<section class="movies container" id="movies">
+  <!-- Heading  -->
+  <div class="heading">
+    <h2 class="heading-title">Popular Movies</h2>
+  </div>
+  <!-- Movies Content  -->
+  <div class="movies-content">
+    <ng-container *ngFor="let p of popularMovieResult">
+      <!-- Movies Box  -->
+      <div class="movie-box">
+        <img
+          src="https://image.tmdb.org/t/p/original/{{ p.poster_path }}"
+          alt="{{ p.original_title }}"
+          class="movie-box-img"
+          loading="lazy"
+        />
+        <div class="box-text">
+          <h2 class="movie-title">{{ p.original_title }}</h2>
+          <span class="movie-type">{{p.release_date}}</span>
+          <a [routerLink]="['/movie', p.id]" class="watch-btn play-btn">
+            <i class="bx bx-right-arrow"></i>
+          </a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</section>
+
+<section class="popular container" id="popular">
+  <!-- Heading  -->
+  <div class="heading">
+    <h2 class="heading-title">Lates Movies</h2>
+    <div class="swiper-btn">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div class="popular-content swiper">
+    <div class="swiper-wrapper">
+      <ng-container *ngFor="let a of actionMovieResult">
+        <div class="swiper-slide">
+          <div class="movie-box">
+            <img
+              src="https://image.tmdb.org/t/p/original/{{ a.poster_path }}"
+              alt="{{ a.original_title }}"
+              class="movie-box-img"
+              loading="lazy"
+            />
+            <div class="box-text">
+              <h2 class="movie-title">{{ a.original_title }}</h2>
+              <span class="movie-type">{{ a.release_date }}</span>
+              <a [routerLink]="['/movie', a.id]" class="watch-btn play-btn">
+                <i class="bx bx-right-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
