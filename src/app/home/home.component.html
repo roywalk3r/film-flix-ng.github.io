@@ -72,7 +72,7 @@
 <section class="popular container" id="popular">
   <!-- Heading  -->
   <div class="heading">
-    <h2 class="heading-title">Lates Movies</h2>
+    <h2 class="heading-title">Latest Movies</h2>
     <div class="swiper-btn">
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
@@ -122,7 +122,7 @@
         />
         <div class="box-text">
           <h2 class="movie-title">{{ p.original_title }}</h2>
-          <span class="movie-type">{{p.release_date}}</span>
+          <span class="movie-type">{{ p.release_date }}</span>
           <a [routerLink]="['/movie', p.id]" class="watch-btn play-btn">
             <i class="bx bx-right-arrow"></i>
           </a>
@@ -132,10 +132,10 @@
   </div>
 </section>
 
-<section class="popular container" id="popular">
+<section class="popular container" id="action">
   <!-- Heading  -->
   <div class="heading">
-    <h2 class="heading-title">Lates Movies</h2>
+    <h2 class="heading-title">Action Movies</h2>
     <div class="swiper-btn">
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
@@ -146,6 +146,78 @@
   <div class="popular-content swiper">
     <div class="swiper-wrapper">
       <ng-container *ngFor="let a of actionMovieResult">
+        <div class="swiper-slide">
+          <div class="movie-box">
+            <img
+              src="https://image.tmdb.org/t/p/original/{{ a.poster_path }}"
+              alt="{{ a.original_title }}"
+              class="movie-box-img"
+              loading="lazy"
+            />
+            <div class="box-text">
+              <h2 class="movie-title">{{ a.original_title }}</h2>
+              <span class="movie-type">{{ a.release_date }}</span>
+              <a [routerLink]="['/movie', a.id]" class="watch-btn play-btn">
+                <i class="bx bx-right-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+<section class="popular container" id="adventure">
+  <!-- Heading  -->
+  <div class="heading">
+    <h2 class="heading-title">Adventure</h2>
+    <div class="swiper-btn">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div class="popular-content swiper">
+    <div class="swiper-wrapper">
+      <ng-container *ngFor="let a of adventureMovieResult">
+        <div class="swiper-slide">
+          <div class="movie-box">
+            <img
+              src="https://image.tmdb.org/t/p/original/{{ a.poster_path }}"
+              alt="{{ a.original_title }}"
+              class="movie-box-img"
+              loading="lazy"
+            />
+            <div class="box-text">
+              <h2 class="movie-title">{{ a.original_title }}</h2>
+              <span class="movie-type">{{ a.release_date }}</span>
+              <a [routerLink]="['/movie', a.id]" class="watch-btn play-btn">
+                <i class="bx bx-right-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+<section class="popular container" id="action">
+  <!-- Heading  -->
+  <div class="heading">
+    <h2 class="heading-title">Animations</h2>
+    <div class="swiper-btn">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div class="popular-content swiper">
+    <div class="swiper-wrapper">
+      <ng-container *ngFor="let a of animationMovieResult">
         <div class="swiper-slide">
           <div class="movie-box">
             <img
