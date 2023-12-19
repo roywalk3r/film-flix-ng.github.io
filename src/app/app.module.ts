@@ -14,6 +14,9 @@ import { MovieApiServiceService } from './service/movie-api-service.service';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { SearchComponent } from './search/search.component';
+import { DisqusModule } from 'ngx-disqus';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +24,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     LandingComponent,
     HomeComponent,
     MovieDetailsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

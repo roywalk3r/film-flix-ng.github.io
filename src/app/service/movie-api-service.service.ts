@@ -41,6 +41,15 @@ export class MovieApiServiceService {
     );
   }
 
+  // getBackdropImage(data: any): Observable<any> {
+  //   return this.http.get(`${this.baseurl}/movie/${data}/`);
+  // }
+  getBackdropImage(data: any): Observable<any> {
+    return this.http.get(
+      `${this.baseurl}/movie/${data}?api_key=${this.apikey}`
+    );
+  }
+
   // getMovieVideo
   getMovieVideo(data: any): Observable<any> {
     return this.http.get(
@@ -109,5 +118,16 @@ export class MovieApiServiceService {
     return this.http.get(
       `${this.baseurl}/discover/movie?api_key=${this.apikey}&with_genres=53`
     );
+  }
+
+  //Related Movies
+
+  getRelatedMovies(id: number): Observable<any> {
+    const url = `${this.baseurl}/movie/${id}/similar?api_key=${this.apikey}`;
+    return this.http.get(url);
+  }
+  getRecommendedMovies(id: any): Observable<any> {
+    const url = `${this.baseurl}/movie/${id}/recommendations?api_key=${this.apikey}`;
+    return this.http.get(url);
   }
 }

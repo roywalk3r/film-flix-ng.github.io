@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DisqusModule } from 'ngx-disqus';
 
 @Component({
   selector: 'app-root',
