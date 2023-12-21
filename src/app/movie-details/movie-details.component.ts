@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieApiServiceService } from '../service/movie-api-service.service';
 import {
@@ -15,7 +15,8 @@ import Swiper from 'swiper';
   styleUrl: './movie-details.component.css',
 })
 export class MovieDetailsComponent implements OnInit {
-  recommendedMovies: any;
+  @ViewChild('videoIframe') videoIframe: ElementRef | undefined;
+
   constructor(
     private service: MovieApiServiceService,
     private route: ActivatedRoute,
@@ -25,6 +26,7 @@ export class MovieDetailsComponent implements OnInit {
     private meta: Meta
   ) {}
   getMovieDetailResult: any;
+    recommendedMovies: any;
   getMovieVideoResult: any;
   getMovieCastResult: any;
   relatedMovies: any;
@@ -182,7 +184,7 @@ export class MovieDetailsComponent implements OnInit {
 
   get vidSrcUrl(): SafeResourceUrl {
     // Build the vidsrc URL with the movie ID and sanitize it
-    const url = `https://vidsrc.me/embed/movie?tmdb=${this.getMovieDetailResult.id}`;
+    const url = `https://vidsrc.to/embed/movie/${this.getMovieDetailResult.id}`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
@@ -191,6 +193,5 @@ export class MovieDetailsComponent implements OnInit {
     this.thumbnailVisible = false;
     this.videoVisible = true;
     this.playButtonVisible = false;
-    this.autoplayEnabled = true;
   }
 }

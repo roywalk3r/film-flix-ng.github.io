@@ -5,31 +5,31 @@
     <!-- Your HTML template -->
 
     <div class="movie-play" *ngIf="getMovieDetailResult">
-      <!-- <img
+      <img
         *ngIf="thumbnailVisible"
         src="https://image.tmdb.org/t/p/original/{{
           getMovieDetailResult.backdrop_path
         }}"
         alt="{{ getMovieDetailResult.original_title }}"
         id="thumbnail"
-      /> -->
+      />
       <iframe
+        #videoIframe
         [src]="vidSrcUrl"
         allowfullscreen
         allowtransparency
-        [attr.autoplay]="autoplayEnabled ? 'autoplay' : null"
-        scrolling="no"
         allow="autoplay"
+        scrolling="no"
         frameborder="0"
-        id="video-iframe"
       ></iframe>
-      <!-- <i
+
+      <i
         class="fa-solid fa-play play-movie-btn"
         style="color: #ffffff"
         id="play-button"
         *ngIf="playButtonVisible"
         (click)="playMovie()"
-      ></i> -->
+      ></i>
     </div>
 
     <!-- About  -->
