@@ -1,10 +1,13 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieApiServiceService } from '../service/movie-api-service.service';
-import { Title, Meta } from '@angular/platform-browser';
+import {
+  Title,
+  Meta,
+  DomSanitizer,
+  SafeResourceUrl,
+} from '@angular/platform-browser';
 import Swiper from 'swiper';
-import { DisqusModule } from 'ngx-disqus';
-import { DISQUS_SHORTNAME } from 'ngx-disqus';
 
 @Component({
   selector: 'app-movie-details',
@@ -17,7 +20,7 @@ export class MovieDetailsComponent implements OnInit {
     private service: MovieApiServiceService,
     private route: ActivatedRoute,
     private router: Router,
-
+    private sanitizer: DomSanitizer,
     private title: Title,
     private meta: Meta
   ) {}
@@ -25,6 +28,10 @@ export class MovieDetailsComponent implements OnInit {
   getMovieVideoResult: any;
   getMovieCastResult: any;
   relatedMovies: any;
+  thumbnailVisible: boolean = true;
+  videoVisible: boolean = true;
+  playButtonVisible = true;
+  autoplayEnabled = false;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -166,5 +173,24 @@ export class MovieDetailsComponent implements OnInit {
   getCurrentPageURL(): string {
     // Get the current page URL dynamically
     return window.location.href.replace(/\.html$/, ''); // Removing .html extension from the URL for sync in case of URL rewriting
+  }
+
+  // get vidSrcUrl(): string {
+  //   // Build the vidsrc URL with the movie ID
+  //   return `https://vidsrc.to/embed/movie/${this.getMovieDetailResult.id}`;
+  // }
+
+  get vidSrcUrl(): SafeResourceUrl {
+    // Build the vidsrc URL with the movie ID and sanitize it
+    const url = `https://vidsrc.me/embed/movie?tmdb=${this.getMovieDetailResult.id}`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  //Thumbnail Swicth
+  playMovie() {
+    this.thumbnailVisible = false;
+    this.videoVisible = true;
+    this.playButtonVisible = false;
+    this.autoplayEnabled = true;
   }
 }

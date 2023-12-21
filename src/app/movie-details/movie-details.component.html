@@ -2,29 +2,36 @@
 <!-- Play Movie Container -->
 <div class="section-container body-container">
   <div class="main-left">
-    <div class="movie-play">
-      <img
+    <!-- Your HTML template -->
+
+    <div class="movie-play" *ngIf="getMovieDetailResult">
+      <!-- <img
+        *ngIf="thumbnailVisible"
         src="https://image.tmdb.org/t/p/original/{{
           getMovieDetailResult.backdrop_path
         }}"
         alt="{{ getMovieDetailResult.original_title }}"
         id="thumbnail"
-      />
+      /> -->
       <iframe
-        src="https://vidsrc.to/embed/movie/{{ getMovieDetailResult.id }}"
+        [src]="vidSrcUrl"
         allowfullscreen
         allowtransparency
-        allow="autoplay"
+        [attr.autoplay]="autoplayEnabled ? 'autoplay' : null"
         scrolling="no"
+        allow="autoplay"
         frameborder="0"
         id="video-iframe"
       ></iframe>
-      <i
+      <!-- <i
         class="fa-solid fa-play play-movie-btn"
         style="color: #ffffff"
         id="play-button"
-      ></i>
+        *ngIf="playButtonVisible"
+        (click)="playMovie()"
+      ></i> -->
     </div>
+
     <!-- About  -->
     <div class="about-movie body-container">
       <div class="sypnosis">
@@ -55,10 +62,7 @@
             ><i class="fa fa-calendar"></i> Release date :
             {{ getMovieDetailResult.release_date }}
           </span>
-          <span id="writer"
-            >Writer
-            <span id="name">: {{ getMovieDetailResult.writer }} </span></span
-          >
+
           <div class="rating-card">
             <div class="rating-content">
               <h2 class="card-heading">
@@ -131,9 +135,9 @@
               <small>similar</small>
               <h4>{{ r.original_title }}</h4>
               <span class="bottom-content">
-                <p>Movie</p>
-                <p>1 Eps</p>
-                <p class="fas fa-bookmark">&nbsp; 57k</p>
+                <p>movie</p>
+                <p style="font-size: larger">•</p>
+                <p class="fas fa-bookmark">&nbsp; {{ r.vote_count }}</p>
               </span>
             </div>
           </div>
@@ -170,5 +174,19 @@
     <!-- <button id="scrollToTopButton" title="Go to top">
         <i class="fa fa-angles-up" style="font-weight: bolder"></i>
       </button> -->
+    <!-- <div class="comment-section container">
+      <h2 class="comment-head">
+        <i class="bx bxs-star star"></i>
+        Comment Section
+      </h2>
+      <div id="disqus_thread"></div>
+    </div> -->
   </div>
+</div>
+<div class="comment-section container">
+  <h2 class="comment-head">
+    <i class="bx bxs-star star"></i>
+    Comment Section
+  </h2>
+  <div id="disqus_thread"></div>
 </div>
